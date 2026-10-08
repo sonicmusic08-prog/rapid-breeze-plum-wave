@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fin Ars d.o.o. – arhitekturni biro iz Zagorja ob Savi. Projektiranje, notranje oblikovanje, gradbena dokumentacija in nadzor.">
+  <title>Fin Ars d.o.o. | Center za arhitekturo</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg: #0f0f0f;
+      --bg-alt: #1a1a1a;
+      --bg-card: #222222;
+      --text: #f5f5f0;
+      --text-muted: #a8a8a0;
+      --accent: #c9a86c;
+      --accent-hover: #d4b87a;
+      --border: rgba(255,255,255,0.08);
+      --radius: 12px;
+      --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Outfit', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
+    }
+
+    /* ========== NAVIGATION ========== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 0;
+      transition: var(--transition);
+      background: transparent;
+    }
+
+    .nav.scrolled {
+      background: rgba(15, 15, 15, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.9rem 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      width: 28px;
+      height: 20px;
+      position: relative;
+      z-index: 1001;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: var(--text);
+      position: absolute;
+      left: 0;
+      transition: var(--transition);
+    }
+
+    .nav-toggle span:nth-child(1) { top: 0; }
+    .nav-toggle span:nth-child(2) { top: 9px; }
+    .nav-toggle span:nth-child(3) { top: 18px; }
+
+    .nav-toggle.open span:nth-child(1) {
+      transform: rotate(45deg);
+      top: 9px;
+    }
+    .nav-toggle.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-toggle.open span:nth-child(3) {
+      transform: rotate(-45deg);
+      top: 9px;
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding: 8rem 0 6rem;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 168, 108, 0.12), transparent),
+        linear-gradient(180deg, #0f0f0f 0%, #141414 100%);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(90deg, transparent 0%, rgba(201,168,108,0.03) 50%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.75rem;
+      font-weight: 500;
+    }
+
+    .hero-badge::before {
+      content: '';
+      width: 28px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 4.8rem);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+    }
+
+    .hero-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.95rem 1.9rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      transition: var(--transition);
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0f0f0f;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(201, 168, 108, 0.25);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .hero-grid {
+      position: absolute;
+      right: -5%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 45%;
+      max-width: 560px;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .hero-grid svg {
+      width: 100%;
+      height: auto;
+    }
+
+    /* ========== SECTIONS ========== */
+    section {
+      padding: 6.5rem 0;
+    }
+
+    .section-header {
+      margin-bottom: 3.5rem;
+      max-width: 560px;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .section-header h2 {
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      margin-bottom: 1rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    /* ========== ABOUT ========== */
+    .about {
+      background: var(--bg-alt);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      font-weight: 300;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .stat {
+      text-align: left;
+    }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      color: var(--accent);
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .about-visual {
+      position: relative;
+      aspect-ratio: 4/5;
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .about-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: 
+        linear-gradient(135deg, rgba(201,168,108,0.08) 0%, transparent 50%),
+        linear-gradient(to bottom, transparent 60%, rgba(15,15,15,0.8));
+    }
+
+    .about-visual-content {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      right: 2rem;
+    }
+
+    .about-visual-content h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .about-visual-content p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* ========== SERVICES ========== */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0;
+      transition: var(--transition);
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(201, 168, 108, 0.25);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    }
+
+    .service-card:hover::before {
+      opacity: 1;
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(201, 168, 108, 0.1);
+      border-radius: 10px;
+      margin-bottom: 1.4rem;
+      color: var(--accent);
+      font-size: 1.4rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 300;
+    }
+
+    /* ========== PROJECTS ========== */
+    .projects {
+      background: var(--bg-alt);
+    }
+
+    .projects-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.5rem 1.2rem;
+      font-size: 0.85rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--accent);
+      color: #0f0f0f;
+      border-color: var(--accent);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      position: relative;
+      aspect-ratio: 4/3;
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      group: true;
+    }
+
+    .project-card-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+      transition: transform 0.6s ease;
+    }
+
+    .project-card:hover .project-card-bg {
+      transform: scale(1.05);
+    }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,15,15,0.9) 0%, transparent 55%);
+    }
+
+    .project-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      z-index: 2;
+      transform: translateY(8px);
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-info {
+      transform: translateY(0);
+    }
+
+    .project-year {
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .project-info h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .project-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: var(--transition);
+    }
+
+    .project-card:hover .project-info p {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========== NEWS ========== */
+    .news-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      max-width: 800px;
+    }
+
+    .news-card .date {
+      font-size: 0.8rem;
+      color: var(--accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .news-card h3 {
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .news-card p {
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    .news-card .eu-note {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      border-left: 2px solid var(--accent);
+      padding-left: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    /* ========== CONTACT ========== */
+    .contact {
+      background: var(--bg-alt);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .contact-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-item-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(201, 168, 108, 0.1);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    .contact-item strong {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-item a:hover {
+      color: var(--accent);
+    }
+
+    .contact-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      padding: 3.5rem 0 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .footer-brand .logo {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      max-width: 280px;
+      font-weight: 300;
+    }
+
+    .footer-links h4 {
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      color: var(--text-muted);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 500;
+    }
+
+    .footer-links ul {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+    }
+
+    .footer-bottom {
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ========== MOBILE ========== */
+    @media (max-width: 900px) {
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: min(320px, 85%);
+        height: 100vh;
+        background: var(--bg-alt);
+        flex-direction: column;
+        padding: 6rem 2rem 2rem;
+        gap: 1.5rem;
+        transition: right 0.35s ease;
+        border-left: 1px solid var(--border);
+      }
+
+      .nav-links.open {
+        right: 0;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .hero-grid {
+        display: none;
+      }
+
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .about-visual {
+        aspect-ratio: 16/10;
+        order: -1;
+      }
+
+      .about-stats {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      section {
+        padding: 4.5rem 0;
+      }
+
+      .hero {
+        padding: 7rem 0 4rem;
+      }
+
+      .about-stats {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-btns {
+        flex-direction: column;
+      }
+
+      .btn {
+        justify-content: center;
+      }
+    }
+
+    /* Smooth reveal animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <a href="#domov" class="logo">FIN<span>ARS</span></a>
+      
+      <button class="nav-toggle" id="navToggle" aria-label="Meni">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#domov" class="active">Domov</a></li>
+        <li><a href="#o-nas">O nas</a></li>
+        <li><a href="#storitve">Storitve</a></li>
+        <li><a href="#projekti">Projekti</a></li>
+        <li><a href="#novice">Novice</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="domov">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">Center za arhitekturo</div>
+        <h1>Oblikujemo prostore, ki <em>živijo</em></h1>
+        <p>Fin Ars d.o.o. je arhitekturni biro z več kot 20 leti izkušenj. Od stanovanjskih hiš do kompleksnih javnih objektov – ustvarjamo premišljeno in trajnostno arhitekturo.</p>
+        <div class="hero-btns">
+          <a href="#projekti" class="btn btn-primary">Naši projekti</a>
+          <a href="#kontakt" class="btn btn-outline">Stopite v stik</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="o-nas">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="section-label">O nas</span>
+          <h2>Arhitekturni biro z dušo</h2>
+          <p>Fin Ars d.o.o. je arhitekturni biro, ki je nastal leta 2006 v Zagorju ob Savi. Vodji biroja sta Kristijan Čuk, u.d.i.a. (strokovni direktor) in Borut Dolar (poslovni direktor).</p>
+          <p>Našo ekipo dopolnjujejo izkušeni arhitekti in inženirji: Urša Dirjec Meško, Irena Gorjup Gračner, Simon Škrbec, Dijana Subašič, Vladimir Mladenović ter poslovna sekretarka Špela Volaj.</p>
+          <p>Ponujamo širok spekter storitev – od projektne dokumentacije do notranjega oblikovanja in projektantskega nadzora.</p>
+          
+          <div class="about-stats">
+            <div class="stat">
+              <div class="stat-num">20+</div>
+              <div class="stat-label">Let izkušenj</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">100+</div>
+              <div class="stat-label">Realiziranih projektov</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">5+</div>
+              <div class="stat-label">Strokovnjakov</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-visual reveal">
+          <div class="about-visual-content">
+            <h3>Zagorje ob Savi</h3>
+            <p>Podvine 36 · od 2006</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="storitve">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Storitve</span>
+        <h2>Kaj delamo</h2>
+        <p>Celovite arhitekturne in projektantske storitve za zahtevne in manj zahtevne objekte.</p>
+      </div>
+
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">◈</div>
+          <h3>Projektna dokumentacija</h3>
+          <p>Izdelava projektne dokumentacije za zahtevne in manj zahtevne objekte – od idejne zasnove do izvedbenih projektov.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">▣</div>
+          <h3>OPPN dokumentacija</h3>
+          <p>Priprava dokumentacije za občinske podrobne prostorske načrte (OPPN) in prostorsko planiranje.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">◎</div>
+          <h3>Notranje oblikovanje</h3>
+          <p>Celovito oblikovanje interierjev – od koncepta do izvedbe, s poudarkom na funkcionalnosti in estetiki.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">◇</div>
+          <h3>Gradbena dovoljenja</h3>
+          <p>Vodenje postopkov za pridobitev gradbenega dovoljenja in vsa potrebna dokumentacija.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">⬡</div>
+          <h3>Izvedbeni projekti</h3>
+          <p>Podrobni izvedbeni projekti za gradnjo, prenove in adaptacije objektov.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">◉</div>
+          <h3>Projektantski nadzor</h3>
+          <p>Strokovni nadzor nad izvedbo del ter dokumentacija za prevzem objekta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="projekti">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Portfolio</span>
+        <h2>Izbrani projekti</h2>
+        <p>Od stanovanjskih hiš do javnih objektov, trgovskih centrov in športnih dvoran.</p>
+      </div>
+
+      <div class="projects-filter reveal">
+        <button class="filter-btn active" data-filter="all">Vse</button>
+        <button class="filter-btn" data-filter="stanovanjsko">Stanovanjsko</button>
+        <button class="filter-btn" data-filter="javno">Javno</button>
+        <button class="filter-btn" data-filter="poslovno">Poslovno</button>
+      </div>
+
+      <div class="projects-grid">
+        <article class="project-card reveal" data-category="stanovanjsko">
+          <div class="project-card-bg"></div>
+          <div class="project-info">
+            <div class="project-year">2015</div>
+            <h3>Hiša v gozdu</h3>
+            <p>Enodružinska hiša z delno vkopano kletjo</p>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-category="javno">
+          <div class="project-card-bg"></div>
+          <div class="project-info">
+            <div class="project-year">2012</div>
+            <h3>Športna dvorana Bonifika</h3>
+            <p>Multifunkcijska športna dvorana – natečaj</p>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-category="poslovno">
+          <div class="project-card-bg"></div>
+          <div class="project-info">
+            <div class="project-year">2012</div>
+            <h3>Mercator Novo mesto</h3>
+            <p>Trgovski center</p>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-category="javno">
+          <div class="project-card-bg"></div>
+          <div class="project-info">
+            <div class="project-year">2011</div>
+            <h3>Mladinski center Trbovlje</h3>
+            <p>Mladinski center in hotel</p>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-category="stanovanjsko">
+          <div class="project-card-bg"></div>
+          <div class="project-info">
+            <div class="project-year">2011</div>
+            <h3>Pasivna lesena hiša</h3>
+            <p>Energetsko učinkovita stanovanjska gradnja</p>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-category="javno">
+          <div class="project-card-bg"></div>
+          <div class="project-info">
+            <div class="project-year">2015</div>
+            <h3>Študentski dom Ptič</h3>
+            <p>Prenova študentskega doma Portorož</p>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-category="poslovno">
+          <div class="project-card-bg"></div>
+          <div class="project-info">
+            <div class="project-year">2012</div>
+            <h3>Poslovni prostori Dimnikcobau</h3>
+            <p>Notranja ureditev poslovnih prostorov</p>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-category="javno">
+          <div class="project-card-bg"></div>
+          <div class="project-info">
+            <div class="project-year">2016</div>
+            <h3>Mrliška vežica Sveta gora</h3>
+            <p>Zasavska Sveta gora</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="news" id="novice">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Novice</span>
+        <h2>Aktualno</h2>
+      </div>
+
+      <div class="news-card reveal">
+        <div class="date">2022</div>
+        <h3>Projekt »Digitalna transformacija podjetja FIN ARS« prejel EU sofinanciranje</h3>
+        <p>Namen naložbe je vlaganje v digitalizacijo poslovanja v verigi podjetja FIN ARS d.o.o. Cilji vključujejo prehod na digitalizacijo poslovanja, izboljšanje kompetenc zaposlenih, spodbujanje energetsko in snovno učinkovitih procesov ter povečanje dodane vrednosti na zaposlenega.</p>
+        <p>Sofinanciranje operacije: do 100.000,00 EUR.</p>
+        <div class="eu-note">
+          Naložbo sofinancirata Republika Slovenija in Evropska unija iz Evropskega sklada za regionalni razvoj.<br>
+          Več informacij: <a href="https://www.eu-skladi.si/" target="_blank" rel="noopener">eu-skladi.si</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="kontakt">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Kontakt</span>
+        <h2>Stopite v stik z nami</h2>
+        <p>Za vprašanja, ponudbe ali sodelovanje smo vam na voljo.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <h3>Fin Ars d.o.o.</h3>
+          
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div>
+              <strong>Naslov</strong>
+              Podvine 36<br>
+              1410 Zagorje ob Savi
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">✉</div>
+            <div>
+              <strong>E-pošta</strong>
+              <a href="mailto:info@finars.si">info@finars.si</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">☎</div>
+            <div>
+              <strong>Kristijan Čuk</strong>
+              <a href="mailto:kristijan.cuk@finars.si">kristijan.cuk@finars.si</a><br>
+              <a href="tel:+38641686959">+386 41 686 959</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">☎</div>
+            <div>
+              <strong>Borut Dolar</strong>
+              <a href="mailto:borut.dolar@finars.si">borut.dolar@finars.si</a><br>
+              <a href="tel:+38631370172">+386 31 370 172</a>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-item-icon">📄</div>
+            <div>
+              <strong>Podatki podjetja</strong>
+              Davčna št.: 70790817<br>
+              Matična št.: 2144921000
+            </div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" onsubmit="event.preventDefault(); alert('Hvala za sporočilo! V produkciji bi se poslalo na e-pošto.');">
+          <div class="form-group">
+            <label for="name">Ime in priimek</label>
+            <input type="text" id="name" name="name" required placeholder="Vaše ime">
+          </div>
+          <div class="form-group">
+            <label for="email">E-pošta</label>
+            <input type="email" id="email" name="email" required placeholder="vas@email.si">
+          </div>
+          <div class="form-group">
+            <label for="subject">Zadeva</label>
+            <input type="text" id="subject" name="subject" placeholder="Npr. Povpraševanje za projekt">
+          </div>
+          <div class="form-group">
+            <label for="message">Sporočilo</label>
+            <textarea id="message" name="message" required placeholder="Opišite vaš projekt ali vprašanje..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Pošlji sporočilo</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="#domov" class="logo">FIN<span>ARS</span></a>
+          <p>Center za arhitekturo, gradbeno projektiranje in druge storitve d.o.o.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Navigacija</h4>
+          <ul>
+            <li><a href="#o-nas">O nas</a></li>
+            <li><a href="#storitve">Storitve</a></li>
+            <li><a href="#projekti">Projekti</a></li>
+            <li><a href="#novice">Novice</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><a href="mailto:info@finars.si">info@finars.si</a></li>
+            <li>Podvine 36</li>
+            <li>1410 Zagorje ob Savi</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2006–2026 Fin Ars d.o.o. Vse pravice pridržane.</span>
+        <span>Spletna stran – moderna prenova</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Navigation scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu
+    const navToggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    // Close menu on link click
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY + 120;
+      sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        const id = section.getAttribute('id');
+        const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+        if (link) {
+          if (scrollY >= top && scrollY < top + height) {
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            link.classList.add('active');
+          }
+        }
+      });
+    });
+
+    // Project filters
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        projectCards.forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Reveal on scroll
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    reveals.forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>

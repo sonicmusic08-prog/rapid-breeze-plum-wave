@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Fin Ars d.o.o. | Center za arhitekturo",
+      "hasCanvas": false,
+      "bodyTextLen": 2617,
+      "bodyTextHash": "fa43c68dd8158228ee94447338f57812e91f3cd3496c749c7487ff6d0be68436",
+      "bodyTextPrefix": "FINARS DOMOV O NAS STORITVE PROJEKTI NOVICE KONTAKT CENTER ZA AR",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Fin Ars d.o.o. | Center za arhitekturo",
+      "hasCanvas": false,
+      "bodyTextLen": 2572,
+      "bodyTextHash": "4802d6eb5f24f6ab1a1088e6bf26d025c375650f54c2ec38f9f824ca92955133",
+      "bodyTextPrefix": "FINARS CENTER ZA ARHITEKTURO Oblikujemo prostore, ki živijo Fin ",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}
